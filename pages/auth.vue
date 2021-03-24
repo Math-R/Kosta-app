@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import login from "@/components/auth/login";
+import Login from "@/components/auth/Login";
+import Register from "@/components/auth/Register"
 export default {
   name:"auth",
-  components:[login]
+  components:{Login, Register}
 }
 </script>
