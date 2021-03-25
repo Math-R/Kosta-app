@@ -1,10 +1,10 @@
 <template>
   <form>
-    <img src="~/assets/images/logo.png" alt="Logo Kosta"/>
+    <img class="Logo" src="~/assets/images/logo.png" alt="Logo Kosta"/>
     <h2 class="font-bold text-3xl">S'identifier</h2>
-    <input v-model="email" type="email" alt=""/>
-    <input v-model="password" type="password" alt=""/>
-    <Button text="Se connecter" ></Button>
+    <input placeholder="E-mail" v-model="email" type="email" alt=""/>
+    <input placeholder="Mot de passe" v-model="password" type="password" alt=""/>
+    <Button text="Se connecter"></Button>
     <span>Mot de passe oublié ?</span>
     <span>Pas de compte ? Inscrivez-vous</span>
   </form>
@@ -15,17 +15,17 @@ import Button from "@/components/common/Button";
 
 export default {
   name: "Login",
-  components : {Button},
+  components: {Button},
   data() {
     return {
       email: '',
-      password:''
+      password: ''
     }
   },
   methods: {
     login(e) {
       e.preventDefault()
-      console.log('email : ',this.email, ', password : ', this.password)
+      console.log('email : ', this.email, ', password : ', this.password)
       // this.$auth.loginWith('laravelSanctum', {
       //   data: {
       //     email: this.email,
