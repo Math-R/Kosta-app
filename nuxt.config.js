@@ -58,7 +58,29 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    proxy: true,
+    credentials: true
+  },
+  publicRuntimeConfig: {
+    axios: {
+      baseUrl: 'http://localhost:8000',
+      browserBaseURL: 'http://localhost:8000',
+      debug: process.env.AXIOS_DEBUG,
+    },
+  },
+  privateRuntimeConfig: {
+    axios: {
+      debug: process.env.AXIOS_DEBUG,
+      baseURL: 'http://localhost:8000'
+    }
+  },
+  proxy: {
+    '/laravel': {
+      target: 'https://laravel-auth.nuxtjs.app',
+      pathRewrite: { '^/laravel': '/' }
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
