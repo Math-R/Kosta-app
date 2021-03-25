@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
         kosta-app
       </h1>
@@ -29,7 +28,7 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 
