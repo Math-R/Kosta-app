@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 export default {
     methods: {
         login () {
@@ -12,7 +11,7 @@ export default {
                     email: 'admin@gmail.com',
                     password: 'admin'
                 }
-            })
+            }).then(response => localStorage.setItem('token', response.data.plainTextToken));
         }
     }
 }

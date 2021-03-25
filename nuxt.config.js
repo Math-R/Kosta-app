@@ -44,6 +44,16 @@ export default {
         endpoints: {
           login: {
             url: '/api/login',
+          },
+          user: {
+            url: '/api/user',
+            method: 'get',
+            propertyName: false,
+            withCredentials: true,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              'Content-Type': 'application/json'
+            }
           }
         }
       }
@@ -51,7 +61,10 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8000/api/',
+    credentials: true
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
