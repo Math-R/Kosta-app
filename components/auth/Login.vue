@@ -24,7 +24,8 @@ export default {
   },
   methods: {
     async login() {
-      await this.$axios.$get('/sanctum/csrf-cookie');
+      this.$axios.defaults.withCredentials = true;
+
       return await this.$auth.loginWith('laravelSanctum', {
         data: {
           email: this.email,
