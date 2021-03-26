@@ -18,6 +18,10 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    {
+      src: '@/plugins/localStorage.js',
+      ssr: false
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -37,6 +41,13 @@ export default {
   ],
 
   auth: {
+    redirect: {
+      login: '/auth',
+      logout: '/auth',
+      callback: false,
+      home: '/'
+    },
+    watchLoggedIn: true,
     strategies: {
       'laravelSanctum': {
         provider: 'laravel/sanctum',
@@ -68,5 +79,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  }
+  },
+  // router:{
+  //   middleware: ['auth']
+  // }
+
 }

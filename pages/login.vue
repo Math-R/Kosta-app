@@ -11,7 +11,10 @@ export default {
                     email: 'admin@gmail.com',
                     password: 'admin'
                 }
-            }).then(response => localStorage.setItem('token', response.data.plainTextToken));
+            }).then(response => {
+                localStorage.setItem('token', response.data.plainTextToken);
+                this.$store.commit('user/updateUser', this.$auth.user);
+            });
         }
     }
 }
