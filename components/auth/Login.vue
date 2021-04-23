@@ -4,9 +4,9 @@
     <h2 class="font-bold text-3xl">S'identifier</h2>
     <input placeholder="E-mail" v-model="email" type="email" alt=""/>
     <input placeholder="Mot de passe" v-model="password" type="password" alt=""/>
-    <Button text="Se connecter"></Button>
+    <Button text="Se connecter" @click.native="login()"></Button>
     <span>Mot de passe oublié ?</span>
-    <span>Pas de compte ? Inscrivez-vous</span>
+    <span class="cursor-pointer" @click="$emit('goToRegister')">Pas de compte ? Inscrivez-vous</span>
   </form>
 </template>
 
@@ -23,15 +23,15 @@ export default {
     }
   },
   methods: {
-    login(e) {
-      e.preventDefault()
-      console.log('email : ', this.email, ', password : ', this.password)
-      // this.$auth.loginWith('laravelSanctum', {
-      //   data: {
-      //     email: this.email,
-      //     password: this.password
-      //   }
-      // })
+    async login() {
+      this.$axios.defaults.withCredentials = true;
+
+      return await this.$auth.loginWith('laravelSanctum', {
+        data: {
+          email: this.email,
+          password: this.password
+        }
+      })
     }
   }
 }

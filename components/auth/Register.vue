@@ -8,7 +8,7 @@
         <input placeholder="Mot de passe" type="password" />
         <input placeholder="Confirmer mot de passe" type="password" />
         <button>S'enregistrer</button>
-        <span>Déjà un compte ? Connectez-vous</span>
+        <span class="cursor-pointer" @click="$emit('goToLogin')">Déjà un compte ? Connectez-vous</span>
     </form>
 </template>
 
