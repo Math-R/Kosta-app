@@ -11,6 +11,7 @@
         <div class="hidden md:flex">
           <Navlink  text="Albums" link="/albums"/>
           <Navlink  text="Profile" link="/profile"/>
+          <div class="cursor-pointer" @click="logout">Déconnexion</div>
         </div>
         <div class="md:hidden" @click="toggleMenu">
           <!-- Menu mobile -->
@@ -43,6 +44,11 @@ export default {
   methods: {
     toggleMenu(){
       this.subMenuOpen = !this.subMenuOpen
+    },
+    logout() {
+      this.$auth.logout();
+      this.$store.commit('user/resetState');
+      localStorage.removeItem('token');
     }
   }
 }
