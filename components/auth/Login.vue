@@ -23,19 +23,18 @@ export default {
     }
   },
   methods: {
-    async login() {
+    async login () {
       this.$axios.defaults.withCredentials = true;
 
-      return await this.$auth.loginWith('laravelSanctum', {
+      const response = await this.$auth.loginWith('laravelSanctum', {
         data: {
           email: this.email,
           password: this.password,
-          headers: { Accept: "application/json"}
         }
-      }).then(response => {
-        localStorage.setItem('token', response.data.plainTextToken);
-        this.$store.commit('user/updateUser', this.$auth.user);
       });
+
+      localStorage.setItem('token', response.data.plainTextToken);
+      this.$store.commit('user/updateUser', this.$auth.user);
     }
   }
 }

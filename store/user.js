@@ -1,20 +1,24 @@
-export const state = () => ({
-    name: '',
-    email: '',
-})
+const getDefaultState = () => {
+    return {
+        name: '',
+        email: '',
+    }
+}
+
+export const state = () => {getDefaultState()};
 
 export const mutations = {
-    updateUser (state, user) {
+    updateUser(state, user) {
         state.name = user.name;
         state.email = user.email;
     },
-    updateName (state, name) {
+    updateName(state, name) {
         state.name = name;
     },
     resetState () {
-        const s = state();
+        const s = getDefaultState();
         Object.keys(s).forEach(key => {
           state[key] = s[key]
         })
-      }
+    }
 }
