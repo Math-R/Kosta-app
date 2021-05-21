@@ -4,14 +4,17 @@ export const state = () => ({
 })
 
 export const mutations = {
-    updateUser(state, user) {
+    updateUser (state, user) {
         state.name = user.name;
         state.email = user.email;
     },
-    updateName(state, name) {
+    updateName (state, name) {
         state.name = name;
     },
-    // resetState () {
-    //     store.replaceState(state);
-    // }
+    resetState () {
+        const s = state();
+        Object.keys(s).forEach(key => {
+          state[key] = s[key]
+        })
+      }
 }

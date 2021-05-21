@@ -57,6 +57,7 @@
 import Button from "@/components/common/Button";
 export default {
   components: { Button },
+  middleware: 'auth',
   data() {
     return {
       name: null,
@@ -84,8 +85,12 @@ export default {
     async updatePassword () {
       var token = localStorage.getItem('token');
       await this.$axios.patch('http://localhost:8000/api/user/update/password',
-        {password: this.password},
-        {headers: { Authorization: 'Bearer ' + token}}
+        {
+          password: this.password
+        },
+        {
+			headers: { Authorization: 'Bearer ' + token }
+        }
       ).then(response => {
         this.apiResult = response.data.message;
         this.password = null;
@@ -94,11 +99,13 @@ export default {
     async deleteAccount () {
       var token = localStorage.getItem('token');
       await this.$axios.delete('http://localhost:8000/api/user/delete',
-        {headers: { Authorization: 'Bearer ' + token}}
+        {
+			headers: { Authorization: 'Bearer ' + token }
+		}
       ).then(response => {
-		// this.$store.replaceState({});
+		this.$auth.logout();
+		this.$store.commit('user/resetState');
         localStorage.removeItem('token');
-		this.$auth.logout()
         this.$router.push('/auth');
       });
     }
