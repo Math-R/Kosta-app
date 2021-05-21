@@ -31,7 +31,10 @@ export default {
           email: this.email,
           password: this.password
         }
-      })
+      }).then(response => {
+        localStorage.setItem('token', response.data.plainTextToken);
+        this.$store.commit('user/updateUser', this.$auth.user);
+      });
     }
   }
 }

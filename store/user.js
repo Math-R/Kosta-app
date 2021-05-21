@@ -10,5 +10,8 @@ export const mutations = {
     },
     updateName(state, name) {
         state.name = name;
-    }
+    },
+    // resetState () {
+    //     store.replaceState(state);
+    // }
 }
