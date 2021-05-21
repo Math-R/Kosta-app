@@ -29,9 +29,13 @@ export default {
       return await this.$auth.loginWith('laravelSanctum', {
         data: {
           email: this.email,
-          password: this.password
+          password: this.password,
+          headers: { Accept: "application/json"}
         }
-      })
+      }).then(response => {
+        localStorage.setItem('token', response.data.plainTextToken);
+        this.$store.commit('user/updateUser', this.$auth.user);
+      });
     }
   }
 }

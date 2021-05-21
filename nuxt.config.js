@@ -18,6 +18,10 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    {
+      src: '@/plugins/localStorage.js',
+      ssr: false
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -51,6 +55,16 @@ export default {
         endpoints: {
           login: {
             url: '/api/login',
+          },
+          user: {
+            url: '/api/user',
+            method: 'get',
+            propertyName: false,
+            withCredentials: true,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              'Content-Type': 'application/json'
+            }
           }
         }
       }
@@ -85,8 +99,8 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   },
-  router:{
-    middleware: ['auth']
-  }
+  // router:{
+  //   middleware: ['auth']
+  // }
 
 }
