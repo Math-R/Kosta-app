@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2 w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+  <div class="swiper-slide px-2 w-full">
         <div class="album">
             <h2>{{ text }}</h2>
             <div class="absolute w-full bottom-0 flex p-2">
@@ -40,14 +40,14 @@ export default {
 <style lang="scss" scoped>
 
 .album {
-    @apply relative bg-cover rounded-xl cursor-pointer;
+    @apply relative bg-cover rounded-xl;
     background-image: url('https://www.fond-ecran-hd.net/Public/uploads/2019-01-14/thumbs-1/703.jpg');
     height : 400px;
     transition: transform .2s;
     box-shadow : inset 0px 30px 15px -10px rgba(0, 0, 0, 0.4);
 
     &:hover {
-        transform: scale(1.05);
+        transform: scale(.95);
     }
 
     h2 {
