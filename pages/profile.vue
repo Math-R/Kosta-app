@@ -72,10 +72,8 @@ export default {
   },
   methods: {
     async updateProfile () {
-      var token = localStorage.getItem('token');
       await this.$axios.patch('http://localhost:8000/api/user/update/profile',
-        {name: this.name},
-        {headers: { Authorization: 'Bearer ' + token}}
+        {name: this.name}
       ).then(response => {
         this.apiResult = response.data.message;
       });
@@ -83,13 +81,9 @@ export default {
       this.$store.commit('user/updateName', this.name);
     },
     async updatePassword () {
-      var token = localStorage.getItem('token');
       await this.$axios.patch('http://localhost:8000/api/user/update/password',
         {
           password: this.password
-        },
-        {
-			headers: { Authorization: 'Bearer ' + token }
         }
       ).then(response => {
         this.apiResult = response.data.message;
@@ -97,16 +91,12 @@ export default {
       });
     },
     async deleteAccount () {
-      var token = localStorage.getItem('token');
-      await this.$axios.delete('http://localhost:8000/api/user/delete',
-        {
-			headers: { Authorization: 'Bearer ' + token }
-		}
-      ).then(response => {
-		this.$auth.logout();
-		this.$store.commit('user/resetState');
-        localStorage.removeItem('token');
-        this.$router.push('/auth');
+      await this.$axios
+        .delete('http://localhost:8000/api/user/delete')
+        .then(response => {
+          this.$auth.logout();
+          this.$store.commit('user/resetState');
+          localStorage.removeItem('token');
       });
     }
   },

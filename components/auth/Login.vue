@@ -33,6 +33,7 @@ export default {
         }
       });
 
+      this.$axios.setToken(response.data.plainTextToken);
       localStorage.setItem('token', response.data.plainTextToken);
       this.$store.commit('user/updateUser', this.$auth.user);
     }
