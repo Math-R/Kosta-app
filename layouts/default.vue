@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar v-if="$auth.loggedIn"/>
+    <Navbar />
     <Nuxt />
   </div>
 </template>
