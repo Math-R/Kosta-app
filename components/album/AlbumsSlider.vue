@@ -5,7 +5,6 @@
         v-for="album in albums"
         :key="album.id"
         v-bind:text="album.name"
-        :size="lg"
         :isSwiper="true"
       ></Album>
       <router-link
@@ -21,7 +20,7 @@
 </template>
 
 <script>
-import Album from "@/components/common/Album";
+import Album from "@/components/album/Album";
 
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
@@ -39,7 +38,6 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  middleware: "auth",
   data() {
     return {
       display: "slider",
@@ -47,8 +45,9 @@ export default {
         slidesPerView: 4,
         spaceBetween: 20,
         grabCursor: true,
+        mousewheel: true,
         // loop: true,
-        // freeMode: true,
+        freeMode: true,
         keyboard: {
           enabled: true,
         },

@@ -39,6 +39,7 @@ export default {
   }
 
   &:disabled {
+    @apply cursor-not-allowed;
     opacity: .4;
   }
 }

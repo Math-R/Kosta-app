@@ -2,7 +2,7 @@
   <div class="">
     <section class="Profile__Header">
       <img class="Logo" src="~/assets/images/logo.png" alt="Logo Kosta" />
-      <h1 class="text-3xl font-bold">{{ $store.state.user.name }}</h1>
+      <h1 class="text-white">{{ $store.state.user.name }}</h1>
       <div class="Profile__Menu">
         <ul>
           <li v-on:click="isActive = 1" v-bind:class="{ active: isActive == 1 }">Mes informations</li>
@@ -142,7 +142,7 @@ export default {
     }
 
     li.active {
-      color: #de0a00;
+      @apply text-red;
       transition: .5s;
     }
   }

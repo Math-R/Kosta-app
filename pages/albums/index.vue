@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="title">Vos albums</h1>
+  <div class="container mt-8">
+    <h1>Vos albums</h1>
     <div class="filter">
       <div class="sliderFilter" v-on:click="display = 'slider'">
         <span></span>
@@ -15,13 +15,18 @@
 
     <AlbumsSlider v-if="display == 'slider'" :albums="albums" />
     <AlbumsGrid v-if="display == 'grid'" :albums="albums" />
+
+    <router-link to="albums/create" tag="div" class="createAlbum">
+      <font-awesome-icon :icon="['fas', 'plus']" />
+    </router-link>
+
   </div>
 </template>
 
 <script>
-import Album from "@/components/common/Album";
-import AlbumsSlider from "@/components/common/AlbumsSlider";
-import AlbumsGrid from "@/components/common/AlbumsGrid";
+import Album from "@/components/album/Album";
+import AlbumsSlider from "@/components/album/AlbumsSlider";
+import AlbumsGrid from "@/components/album/AlbumsGrid";
 
 export default {
   name: "albums",
@@ -45,10 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  @apply text-2xl font-bold mt-8 mb-4;
-}
-
 .filter {
   @apply flex -mt-8 float-right;
   color: #c85353;
@@ -58,12 +59,24 @@ export default {
   }
   .sliderFilter {
     padding: 4px;
+
     span {
       border-left: 4px solid #c85353;
       padding: 2px;
       height: 20px;
     }
   }
+}
+
+.createAlbum {
+    @apply flex justify-center items-center float-right bg-red text-white rounded-full;
+    height: 50px;
+    width: 50px;
+    transition: .2s;
+
+    &:hover {
+        @apply cursor-pointer;
+    }
 }
 </style>
 

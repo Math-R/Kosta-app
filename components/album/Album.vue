@@ -35,7 +35,7 @@ export default {
     },
     size: {
       type: String,
-      default: "lg",
+      default: "",
     },
     isSwiper: {
       type: Boolean,
@@ -51,13 +51,10 @@ export default {
   background-image: url("https://www.fond-ecran-hd.net/Public/uploads/2019-01-14/thumbs-1/703.jpg");
   box-shadow: inset 0px 30px 15px -10px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s;
+  height: 400px;
 
-  &.sm {
+  &.small {
     height: 200px;
-  }
-
-  &.lg {
-    height: 400px;
   }
 
   &:hover {
@@ -67,6 +64,7 @@ export default {
   h2 {
     @apply font-bold text-2xl p-4;
     color: white;
+
   }
 }
 </style>
