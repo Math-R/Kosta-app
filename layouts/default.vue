@@ -8,7 +8,7 @@
 <style>
 html {
   font-family:
-    'Source Sans Pro',
+    'Poppins',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -59,5 +59,10 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+h1 {
+  @apply text-2xl font-bold mb-4;
+  color: #404040;
 }
 </style>

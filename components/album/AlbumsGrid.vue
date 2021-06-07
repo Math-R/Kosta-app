@@ -4,7 +4,7 @@
       v-for="album in albums"
       :key="album.id"
       v-bind:text="album.name"
-      :size="sm"
+      :size="small"
     ></Album>
     <router-link to="albums/create" tag="div" class="px-2 w-full">
       <div class="createAlbum"><h2>Créer un album</h2></div>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Album from "@/components/common/Album";
+import Album from "@/components/album/Album";
 
 export default {
   name: "albumsGrid",
@@ -26,7 +26,6 @@ export default {
   components: {
     Album,
   },
-  middleware: "auth",
   data() {
     return {};
   },
