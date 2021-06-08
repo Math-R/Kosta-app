@@ -8,10 +8,10 @@
       rows="5"
     />
 
-    <h3 class="text-left mb-4">Participants</h3>
+    <!-- <h3 class="text-left mb-4">Participants</h3>
     <div class="addParticipant">
       <font-awesome-icon :icon="['fas', 'plus']" />
-    </div>
+    </div> -->
     <Button
       text="Valider"
       @click.native="submit"
@@ -30,8 +30,8 @@ export default {
   },
   data() {
     return {
-      albumTitle: "",
-      albumDescription: "",
+      title: "",
+      description: "",
     };
   },
   computed: {
@@ -41,8 +41,11 @@ export default {
   },
   methods: {
     submit() {
-      var data = { albumTitle: this.albumTitle };
-      this.$emit("next-step", 'mediaStep', data);
+      var data = {
+        title: this.title,
+        description: this.description
+      };
+      this.$emit("next-step", data);
     },
   },
 };

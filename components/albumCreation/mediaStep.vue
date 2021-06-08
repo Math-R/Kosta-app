@@ -1,13 +1,6 @@
 <template>
   <div class="mediaStep">
-    <dropzone
-      id="dropzone"
-      ref="el"
-      :options="options"
-      :destroyDropzone="true"
-    >
-      <!-- @vdropzone-file-added="addPhotos" -->
-    </dropzone>
+    <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
 
     <Button
       text="Valider"
@@ -18,22 +11,23 @@
 
 <script>
 import Button from "@/components/common/Button";
-import Dropzone from "nuxt-dropzone";
-import "nuxt-dropzone/dropzone.css";
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 export default {
   name: "mediaStep",
   components: {
-    Dropzone,
+    vueDropzone: vue2Dropzone,
     Button,
   },
   data() {
     return {
-      // See https://rowanwins.github.io/vue-dropzone/docs/dist/index.html#/props
-      options: {
-        url: "https://httpbin.org/post",
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-      },
+      dropzoneOptions: {
+          url: 'https://httpbin.org/post',
+          thumbnailWidth: 150,
+          maxFilesize: 0.5,
+          headers: { "My-Awesome-Header": "header value" }
+      }
     };
   },
   methods: {
