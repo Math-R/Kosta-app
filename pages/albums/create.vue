@@ -1,34 +1,38 @@
 <template>
   <div class="container">
-    <div :class="['albumCreationContainer w-full lg:w-1/2', currentComponent]">
-      <h1>Créer votre album</h1>
-      <ProgressBar :currentStep="currentComponent"/>
+    <div :class="['albumCreationContainer w-full lg:w-1/2', currentStep]">
+      <h1>{{ stepTitle }}</h1>
+      <ProgressBar :currentStep="currentStep" :steps="steps"/>
       <!-- <div :is="currentComponent" @next-step="swapComponent"></div> -->
-      <FirstStep @next-step="swapComponent" />
+      <component :is="steps[currentStep]" @next-step="swapComponent" @set-title="setTitle"/>
     </div>
   </div>
 </template>
 
 <script>
 import Button from "@/components/common/Button";
-import FirstStep from "@/components/albumCreation/FirstStep";
-import MediaStep from "@/components/albumCreation/MediaStep";
-import LastStep from "@/components/albumCreation/LastStep";
+import DetailsStep from "@/components/albumCreation/DetailsStep";
+import CollaboratorsStep from "@/components/albumCreation/CollaboratorsStep";
 import ProgressBar from "@/components/albumCreation/ProgressBar";
 
 export default {
-  name: "create",
+
   components: {
     ProgressBar,
-    FirstStep,
-    MediaStep,
-    LastStep,
+    DetailsStep,
+    CollaboratorsStep,
     Button,
   },
-  middleware: "auth",
   data() {
     return {
-      currentComponent: "FirstStep",
+      steps:[
+        'DetailsStep',
+        'CollaboratorsStep',
+        'DetailsStep',
+        'CollaboratorsStep',
+      ],
+      stepTitle:'',
+      currentStep: null,
       formData: {
         title : '',
         description : '',
@@ -37,11 +41,19 @@ export default {
       },
     };
   },
+  created(){
+    this.initCreation()
+  },
   methods: {
-    swapComponent(component, data) {
-      this.formData.push(data);
-      this.currentComponent = component;
+    initCreation(){
+      this.currentStep = 0
     },
+    swapComponent(component, data) {
+      this.currentStep++;
+    },
+    setTitle(title){
+      this.stepTitle = title
+    }
     // async addPhotos(file) {
     //   console.log(file.upload);
     //   await this.$axios

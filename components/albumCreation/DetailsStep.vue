@@ -1,9 +1,9 @@
 <template>
   <div class="firstStep">
-    <input placeholder="Nom" type="text" v-model="albumTitle" />
+    <input placeholder="Nom" type="text" v-model="title" />
     <textarea
       placeholder="Description"
-      v-model="albumDescription"
+      v-model="description"
       type="textarea"
       rows="5"
     />
@@ -24,19 +24,19 @@
 import Button from "@/components/common/Button";
 
 export default {
-  name: "firstStep",
   components: {
     Button,
   },
   data() {
     return {
-      title: "",
+      stepTitle: "Créez votre album",
+      title:"",
       description: "",
     };
   },
   computed: {
     isDisabled() {
-      return this.albumTitle.length === 0;
+      return this.title.length === 0;
     },
   },
   methods: {
@@ -48,6 +48,9 @@ export default {
       this.$emit("next-step", data);
     },
   },
+  mounted(){
+    this.$emit('set-title', this.stepTitle)
+  }
 };
 </script>
 

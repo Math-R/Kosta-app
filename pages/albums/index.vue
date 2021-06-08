@@ -35,7 +35,6 @@ export default {
     AlbumsSlider,
     AlbumsGrid,
   },
-  middleware: "auth",
   data() {
     return {
       albums: [],

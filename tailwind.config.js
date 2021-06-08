@@ -99,7 +99,8 @@ module.exports = {
       red:{
         default:'#de0a00',
         dark: '#bb160f',
-        light: '#bb160f'
+        light: '#c85353',
+        lighter: '#e38080',
       },
       grey: {
         DEFAULT: '#07090B',

@@ -57,7 +57,6 @@
 import Button from "@/components/common/Button";
 export default {
   components: { Button },
-  middleware: 'auth',
   data() {
     return {
       name: null,
