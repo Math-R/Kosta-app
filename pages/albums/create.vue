@@ -3,8 +3,8 @@
     <div :class="['albumCreationContainer w-full lg:w-1/2', currentComponent]">
       <h1>Créer votre album</h1>
       <ProgressBar :currentStep="currentComponent"/>
-      <div :is="currentComponent" @next-step="swapComponent"></div>
-      <!-- <FirstStep @next-step="swapComponent" /> -->
+      <!-- <div :is="currentComponent" @next-step="swapComponent"></div> -->
+      <FirstStep @next-step="swapComponent" />
     </div>
   </div>
 </template>
@@ -29,12 +29,12 @@ export default {
   data() {
     return {
       currentComponent: "FirstStep",
-      formData: [],
-      // See https://rowanwins.github.io/vue-dropzone/docs/dist/index.html#/props
-      // options: {
-      //   url: "https://httpbin.org/post",
-      //   headers: { "Authorization": "Bearer " + localStorage.getItem('token') }
-      // }
+      formData: {
+        title : '',
+        description : '',
+        participant : '',
+        media : []
+      },
     };
   },
   methods: {
