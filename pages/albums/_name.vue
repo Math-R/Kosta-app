@@ -72,6 +72,10 @@ export default {
                 date: '11-06-2021',
                 url: require('~/assets/images/9.jpg')
               },
+              {
+                date: '11-06-2021',
+                url: require('~/assets/images/9.jpg')
+              },
 
             ]
           },
@@ -145,7 +149,7 @@ export default {
   grid-auto-flow: dense;
 
 
-  div:nth-child(3n) {
+  div:nth-child(3n +1) {
     grid-column: span 2;
     grid-row: span 2;
   }
