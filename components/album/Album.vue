@@ -1,6 +1,6 @@
 <template>
-  <div :class="['px-2 w-full', isSwiper ? 'swiper-slide ' : '']">
-    <div :class="['album', size]">
+  <div :class="['px-2 w-full', isSwiper ? 'swiper-slide ' : '']" >
+    <div :class="['album cursor-pointer', size]" @click="$router.push('albums/test')">
       <h2>{{ text }}</h2>
       <div class="absolute w-full bottom-0 flex p-2">
         <div

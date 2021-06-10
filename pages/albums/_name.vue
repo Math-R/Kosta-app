@@ -4,38 +4,51 @@
       <div class="text-7xl text-center font-bold mb-10">
         {{ album.title }}
       </div>
-      <div class="album-short flex mb-14 items-center">
+      <div class="album-short flex mb-20 items-center">
         <div class="w-6/12">
           <img :src="album.days[0].photos[0].url" alt="" class="rounded-xl">
         </div>
         <div class="w-6/12 pl-8">
           <div class="text-5xl">
-Du {{startDate}} au {{endDate}}
+            Du {{ startDate }} au {{ endDate }}
           </div>
         </div>
       </div>
-      <div class="masonry mx-auto w-10/12">
+      <div class="text-6xl text-center mb-20">
+        11 Juin 2021
+      </div>
+      <div class="masonry mx-auto w-10/12 mb-20">
         <div class="bg-center bg-no-repeat bg-cover rounded-xl" v-for="(photo, index) in album.days[0].photos"
              :style="{backgroundImage: `url(${photo.url})`}" :key="index"></div>
       </div>
-
     </div>
+    <div class="text-6xl text-center mb-20">
+      12 Juin 2021
+    </div>
+    <swiper :options="swiperOption" class="swiper" >
+      <div class="swiper-slide w-1/3 " v-for="(photo, index) in album.days[1].photos">
+        <div class="bg-cover bg-center bg-no-repeat w-full" :style="{backgroundImage: `url(${photo.url})`, height: '500px'}"></div>
+      </div>
+    </swiper>
+
   </section>
 </template>
 
 <script>
-import VueMasonryWall from "vue-masonry-wall";
 import moment from "moment";
+import {Swiper, SwiperSlide} from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
 
 export default {
-  components: {VueMasonryWall},
+  components: {Swiper,
+    SwiperSlide,},
   data() {
     return {
       album: {
         title: 'Vacances entre potes',
         description: '',
-        start_date:'11-06-2011',
-        end_date:'14-06-2011',
+        start_date: '11-06-2011',
+        end_date: '14-06-2011',
         days: [
           {
             date: '11-06-2021',
@@ -60,22 +73,7 @@ export default {
                 date: '11-06-2021',
                 url: require('~/assets/images/5.jpg')
               },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/6.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/8.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/9.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/9.jpg')
-              },
+
 
             ]
           },
@@ -121,7 +119,23 @@ export default {
             ]
           },
         ]
-      }
+      },
+      swiperOption: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        grabCursor: true,
+        mousewheel: true,
+        // loop: true,
+        freeMode: true,
+        keyboard: {
+          enabled: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+      },
     }
   },
   methods: {
@@ -129,18 +143,18 @@ export default {
       return Math.floor(Math.random() * 4) + 1
     }
   },
-   computed :{
-    startDate(){
+  computed: {
+    startDate() {
       return moment("2021-06-11T00:00:00+0100").format("D")
     },
-     endDate(){
+    endDate() {
       moment.locale('fr')
       return moment("2021-06-14T00:00:00+0100").format("D MMMM")
     }
-   }
+  }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .masonry {
   display: grid;
   gap: 3em;
@@ -164,5 +178,31 @@ export default {
 
   }
 
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
