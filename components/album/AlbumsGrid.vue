@@ -3,7 +3,7 @@
     <Album
       v-for="album in albums"
       :key="album.id"
-      v-bind:text="album.name"
+      :text="album.name"
       :size="small"
     ></Album>
     <router-link to="albums/create" tag="div" class="px-2 w-full">

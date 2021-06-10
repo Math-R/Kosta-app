@@ -2,9 +2,15 @@
   <div class="container">
     <div :class="['albumCreationContainer w-full lg:w-1/2', currentStep]">
       <h1>{{ stepTitle }}</h1>
-      <ProgressBar :currentStep="currentStep" :steps="steps"/>
+      <ProgressBar :currentStep="currentStep" :steps="steps" />
       <!-- <div :is="currentComponent" @next-step="swapComponent"></div> -->
-      <component :is="steps[currentStep]" @next-step="swapComponent" @set-title="setTitle"/>
+      <component
+        :is="steps[currentStep]"
+        :albumId="albumId"
+        @next-step="nextStep"
+        @set-title="setTitle"
+        @set-album-id="setAlbumId"
+      />
     </div>
   </div>
 </template>
@@ -13,58 +19,49 @@
 import Button from "@/components/common/Button";
 import DetailsStep from "@/components/albumCreation/DetailsStep";
 import CollaboratorsStep from "@/components/albumCreation/CollaboratorsStep";
+import LastStep from "@/components/albumCreation/LastStep";
 import ProgressBar from "@/components/albumCreation/ProgressBar";
 
 export default {
-
   components: {
     ProgressBar,
     DetailsStep,
     CollaboratorsStep,
+    LastStep,
     Button,
   },
   data() {
     return {
-      steps:[
-        'DetailsStep',
-        'CollaboratorsStep',
-        'DetailsStep',
-        'CollaboratorsStep',
+      steps: [
+        "DetailsStep",
+        "CollaboratorsStep",
+        "LastStep",
+        // 'CollaboratorsStep',
       ],
-      stepTitle:'',
+      stepTitle: "",
       currentStep: null,
-      formData: {
-        title : '',
-        description : '',
-        participant : '',
-        media : []
-      },
+      albumId: null,
     };
   },
-  created(){
-    this.initCreation()
+  created() {
+    this.initCreation();
   },
   methods: {
-    initCreation(){
-      this.currentStep = 0
+    initCreation() {
+      this.currentStep = 0;
+      this.albumId = null;
     },
-    swapComponent(component, data) {
-      this.currentStep++;
+    nextStep() {
+      if (this.currentStep < this.steps.length - 1) {
+        this.currentStep++;
+      }
     },
-    setTitle(title){
-      this.stepTitle = title
-    }
-    // async addPhotos(file) {
-    //   console.log(file.upload);
-    //   await this.$axios
-    //     .post("http://localhost:8000/api/album", {
-    //       name: "testfront",
-    //       photos: [file.upload],
-    //     })
-    //     .then((response) => {
-    //       console.log(response);
-    //     });
-    // },
+    setTitle(title) {
+      this.stepTitle = title;
+    },
+    setAlbumId(id) {
+      this.albumId = id;
+    },
   },
 };
 </script>

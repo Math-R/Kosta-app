@@ -2,14 +2,11 @@
   <div class="container mt-8">
     <h1>Vos albums</h1>
     <div class="filter">
-      <div class="sliderFilter" v-on:click="display = 'slider'">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="sliderFilter mr-4" v-on:click="display = 'slider'">
+        <font-awesome-icon :icon="['fa', 'bars']" size="2x" class="rotateSvg"/>
       </div>
-      <span></span>
       <div v-on:click="display = 'grid'">
-        <font-awesome-icon :icon="['fas', 'grip-horizontal']" size="2x" />
+        <font-awesome-icon :icon="['fa', 'th']" size="2x" />
       </div>
     </div>
 
@@ -53,17 +50,8 @@ export default {
   @apply flex -mt-8 float-right;
   color: #c85353;
 
-  p {
-    @apply mx-2;
-  }
-  .sliderFilter {
-    padding: 4px;
-
-    span {
-      border-left: 4px solid #c85353;
-      padding: 2px;
-      height: 20px;
-    }
+  .rotateSvg {
+    transform: rotate(90deg);
   }
 }
 
