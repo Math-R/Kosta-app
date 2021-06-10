@@ -1,23 +1,27 @@
 <template>
-  <div class="container mt-8">
-    <h1>Vos albums</h1>
-    <div class="filter">
-      <div class="sliderFilter mr-4" v-on:click="display = 'slider'">
-        <font-awesome-icon :icon="['fa', 'bars']" size="2x" class="rotateSvg"/>
+  <section class="albums relative h-full">
+    <div class="container mt-8">
+      <h1>Vos albums</h1>
+      <div class="filter">
+        <div class="sliderFilter mr-4" v-on:click="display = 'slider'">
+          <font-awesome-icon :icon="['fa', 'bars']" size="2x" class="rotateSvg"/>
+        </div>
+        <div v-on:click="display = 'grid'">
+          <font-awesome-icon :icon="['fa', 'th']" size="2x" />
+        </div>
       </div>
-      <div v-on:click="display = 'grid'">
-        <font-awesome-icon :icon="['fa', 'th']" size="2x" />
-      </div>
+
+      <AlbumsSlider v-if="display == 'slider'" :albums="albums" />
+      <AlbumsGrid v-if="display == 'grid'" :albums="albums" />
+
+
+
     </div>
-
-    <AlbumsSlider v-if="display == 'slider'" :albums="albums" />
-    <AlbumsGrid v-if="display == 'grid'" :albums="albums" />
-
-    <router-link to="albums/create" tag="div" class="createAlbum">
+    <router-link to="albums/create" tag="div" class="createAlbum bottom-10 right-10 cursor-pointer">
       <font-awesome-icon :icon="['fas', 'plus']" />
     </router-link>
+  </section>
 
-  </div>
 </template>
 
 <script>
@@ -56,7 +60,7 @@ export default {
 }
 
 .createAlbum {
-    @apply flex justify-center items-center float-right bg-red text-white rounded-full;
+    @apply flex justify-center items-center fixed  bg-red text-white rounded-full;
     height: 50px;
     width: 50px;
     transition: .2s;

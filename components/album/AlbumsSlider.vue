@@ -14,8 +14,9 @@
       >
         <div class="createAlbum"><h2>Créer un album</h2></div>
       </router-link>
-      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
+    <div class="swiper-pagination mx-auto left-50 mt-4" slot="pagination"></div>
+
   </div>
 </template>
 
