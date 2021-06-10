@@ -12,7 +12,7 @@
         <div class="hidden md:flex">
           <Navlink  text="Albums" link="/albums"/>
           <Navlink  text="Profile" link="/profile"/>
-          <div class="cursor-pointer" v-if="$auth.loggedIn" @click="logout">Déconnexion</div>
+          <font-awesome-icon :icon="['fa', 'sign-out-alt']" size="2x" class="cursor-pointer" v-if="$auth.loggedIn" @click="logout" />
         </div>
         <div class="md:hidden" @click="toggleMenu">
           <!-- Menu mobile -->

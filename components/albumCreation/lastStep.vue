@@ -1,8 +1,6 @@
 <template>
-  <div class="mediaStep">
-    <Button
-      text="Valider"
-    ></Button>
+  <div class="w-3/4 m-auto mb-6">
+    <font-awesome-icon :icon="['fa', 'check-circle']" size="5x" />
   </div>
 </template>
 
@@ -10,22 +8,21 @@
 import Button from "@/components/common/Button";
 
 export default {
-  name: "lastStep",
+  name: "LastStep",
   components: {
     Button,
   },
   data() {
     return {
+      stepTitle: "Votre album a été crée !",
     };
   },
-  methods: {
-    submit() {
-    },
+  mounted() {
+    this.$emit("set-title", this.stepTitle);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 
