@@ -6,7 +6,7 @@
       <img v-else src="~/assets/images/background-museum.png" alt="Cover Kosta"/>
 
       <Login v-if="authState === 'login'" @goToRegister="authState = 'register'"/>
-      <Register v-if="authState === 'register'" @goToLogin="authState = 'login'"/>
+      <Register v-if="authState === 'register'" @goToLogin="authState = 'login'" @registered="authState = 'login'"/>
     </div>
   </div>
 </template>

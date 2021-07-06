@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <section class="Profile__Header">
-      <img class="Logo" src="~/assets/images/logo.png" alt="Logo Kosta" />
+      <img class="Logo w-21 m-4 rounded-full" src="~/assets/images/avatar.jpg" alt="Logo Kosta" />
       <h1 class="text-white">{{ $store.state.user.name }}</h1>
       <div class="Profile__Menu">
         <ul>

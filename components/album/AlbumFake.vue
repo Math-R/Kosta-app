@@ -16,15 +16,15 @@
 
 <script>
 export default {
-  name: "Album",
+  name: "AlbumFake",
   data() {
     return {
       albums: {
         img: [
-          "https://www.fond-ecran-hd.net/Public/uploads/2019-01-14/thumbs-1/703.jpg",
-          "https://i.pinimg.com/originals/92/94/81/929481d2c482611e87bcfafaf1020ef6.jpg",
+            "https://i.pinimg.com/originals/92/94/81/929481d2c482611e87bcfafaf1020ef6.jpg",
           "https://images5.alphacoders.com/372/thumb-1920-372649.jpg",
           "https://www.izoa.fr/img/p/1/3/2/7/2/13272-large.jpg",
+          "https://www.fond-ecran-hd.net/Public/uploads/2019-01-14/thumbs-1/703.jpg",
         ],
       },
     };
@@ -48,7 +48,7 @@ export default {
 <style lang="scss" scoped>
 .album {
   @apply relative bg-cover rounded-xl;
-  background-image: url("~@/assets/images/1.jpg");
+  background-image: url("https://www.izoa.fr/img/p/1/3/2/7/2/13272-large.jpg");
   box-shadow: inset 0px 30px 15px -10px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s;
   height: 400px;

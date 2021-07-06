@@ -4,8 +4,14 @@
       v-for="album in albums"
       :key="album.id"
       :text="album.name"
-      :size="small"
+      size="small"
     ></Album>
+    <!-- <AlbumFake
+        v-for="album in albums"
+        :key="album.id"
+        v-bind:text="album.name"
+        size="small"
+      ></AlbumFake> -->
     <router-link to="albums/create" tag="div" class="px-2 w-full">
       <div class="createAlbum"><h2>Créer un album</h2></div>
     </router-link>
@@ -14,17 +20,19 @@
 
 <script>
 import Album from "@/components/album/Album";
+import AlbumFake from "@/components/album/AlbumFake";
 
 export default {
   name: "albumsGrid",
   props: {
     albums: {
       type: Array,
-      default: [],
+      default: [''],
     },
   },
   components: {
     Album,
+    AlbumFake,
   },
   data() {
     return {};

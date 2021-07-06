@@ -35,6 +35,8 @@ export default {
         },
       ).then(response => {
         this.apiResult = response.data.message;
+        this.$emit('registered');
+
       });
     }
   }

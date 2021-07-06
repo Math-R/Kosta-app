@@ -51,7 +51,7 @@ export default {
         formData
       );
 
-      this.$emit("set-album-id", data.data.id);
+      this.$emit("set-album-slug", data.data.slug);
       this.$emit("next-step", data);
     },
   },

@@ -1,6 +1,5 @@
 <template>
   <div class="w-3/4 m-auto">
-    <!-- <p>{{albumId}}</p> -->
     <input placeholder="Email" type="text" v-model="collaborators" />
 
     <Button
@@ -12,7 +11,7 @@
 
 <script>
 export default {
-  props: ["albumId"],
+  props: ["albumSlug"],
   data() {
     return {
       stepTitle: "Invitez des ami.e.s",
@@ -25,11 +24,10 @@ export default {
   methods: {
     async submit() {
       const { data } = await this.$axios.post(
-        "http://localhost:8000/api/album/" + this.albumId + "/collaborator",
-        {email : this.collaborators}
+        "http://localhost:8000/api/album/" + this.albumSlug + "/invite",
+        { email : this.collaborators }
       );
 
-      // this.$emit("set-album-id", data.data.id);
       this.$emit("next-step", data);
     },
   },

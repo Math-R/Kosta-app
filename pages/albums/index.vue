@@ -50,6 +50,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+// .albums {
+//     background: url("~assets/images/album_screen.svg");
+//     min-height: calc(100vh - 76px);
+// }
 .filter {
   @apply flex -mt-8 float-right;
   color: #c85353;

@@ -7,6 +7,12 @@
         v-bind:text="album.name"
         :isSwiper="true"
       ></Album>
+      <!-- <AlbumFake
+        v-for="album in albums"
+        :key="album.id"
+        v-bind:text="album.name"
+        :isSwiper="true"
+      ></AlbumFake> -->
       <router-link
         to="albums/create"
         tag="div"
@@ -22,6 +28,7 @@
 
 <script>
 import Album from "@/components/album/Album";
+import AlbumFake from "@/components/album/AlbumFake";
 
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
@@ -36,6 +43,7 @@ export default {
   },
   components: {
     Album,
+    AlbumFake,
     Swiper,
     SwiperSlide,
   },

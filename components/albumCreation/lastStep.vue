@@ -19,6 +19,10 @@ export default {
   },
   mounted() {
     this.$emit("set-title", this.stepTitle);
+
+    setTimeout(() => {
+      this.$router.push('test')
+    }, 2000);
   },
 };
 </script>

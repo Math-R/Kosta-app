@@ -1,24 +1,32 @@
 <template>
-  <div class="container">
-    <div :class="['albumCreationContainer w-full lg:w-1/2', currentStep]">
-      <h1>{{ stepTitle }}</h1>
-      <ProgressBar :currentStep="currentStep" :steps="steps" />
-      <!-- <div :is="currentComponent" @next-step="swapComponent"></div> -->
-      <component
-        :is="steps[currentStep]"
-        :albumId="albumId"
-        @next-step="nextStep"
-        @set-title="setTitle"
-        @set-album-id="setAlbumId"
-      />
+  <section class="createAlbum bubble">
+    <div class="container">
+      <div
+        :class="[
+          'albumCreationContainer bg-white w-full lg:w-1/2',
+          currentStep,
+        ]"
+      >
+        <h1>{{ stepTitle }}</h1>
+        <ProgressBar :currentStep="currentStep" :steps="steps" />
+        <!-- <div :is="currentComponent" @next-step="swapComponent"></div> -->
+        <component
+          :is="steps[currentStep]"
+          :albumSlug="albumSlug"
+          @next-step="nextStep"
+          @set-title="setTitle"
+          @set-album-slug="setAlbumSlug"
+        />
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import Button from "@/components/common/Button";
 import DetailsStep from "@/components/albumCreation/DetailsStep";
 import CollaboratorsStep from "@/components/albumCreation/CollaboratorsStep";
+import MediaStep from "@/components/albumCreation/MediaStep";
 import LastStep from "@/components/albumCreation/LastStep";
 import ProgressBar from "@/components/albumCreation/ProgressBar";
 
@@ -27,6 +35,7 @@ export default {
     ProgressBar,
     DetailsStep,
     CollaboratorsStep,
+    MediaStep,
     LastStep,
     Button,
   },
@@ -35,12 +44,12 @@ export default {
       steps: [
         "DetailsStep",
         "CollaboratorsStep",
+        "mediaStep",
         "LastStep",
-        // 'CollaboratorsStep',
       ],
       stepTitle: "",
       currentStep: null,
-      albumId: null,
+      albumSlug: null,
     };
   },
   created() {
@@ -49,7 +58,7 @@ export default {
   methods: {
     initCreation() {
       this.currentStep = 0;
-      this.albumId = null;
+      this.albumSlug = null;
     },
     nextStep() {
       if (this.currentStep < this.steps.length - 1) {
@@ -59,14 +68,18 @@ export default {
     setTitle(title) {
       this.stepTitle = title;
     },
-    setAlbumId(id) {
-      this.albumId = id;
+    setAlbumSlug(slug) {
+      this.albumSlug = slug;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.bubble {
+  background: url("~assets/images/bubbles-one-background.png");
+}
+
 .albumCreationContainer {
   @apply m-auto mt-8 p-4 rounded-xl text-center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);
@@ -74,6 +87,9 @@ export default {
   &.mediaStep {
     width: 75%;
   }
+}
+.createAlbum {
+  min-height: calc(100vh - 76px);
 }
 </style>
 
