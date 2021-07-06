@@ -5964,6 +5964,13 @@
   "resolved" "https://registry.npmjs.org/number-is-nan/-/number-is-nan-1.0.1.tgz"
   "version" "1.0.1"
 
+"nuxt-dropzone@^1.0.4":
+  "integrity" "sha512-1QuthM3bDGBN2ugXE5HfcvBmekNy4YUYfMurTeuBrwIGId0JSF9HasspwndxsSNL42eGET83eezRcH4ekLGqeA=="
+  "resolved" "https://registry.npmjs.org/nuxt-dropzone/-/nuxt-dropzone-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "vue2-dropzone" "3.6.0"
+
 "nuxt-fontawesome@^0.4.0":
   "integrity" "sha512-4oHIot/WLUBFM7o944EQks7WmntD/YsLxZ+g9mJjY9pHw1FJZBaD7Bd+cDsXvl3h/0/f87QwIXf/AA+vOIY0Ag=="
   "resolved" "https://registry.npmjs.org/nuxt-fontawesome/-/nuxt-fontawesome-0.4.0.tgz"
@@ -9144,7 +9151,7 @@
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
   "version" "2.6.12"
 
-"vue2-dropzone@^3.6.0":
+"vue2-dropzone@3.6.0":
   "integrity" "sha512-YXC1nCWIZvfa98e/i6h+EshZCkFSxFEh0Sxr9ODfThAPPDVhAzLLlz/4XIx0NGO1QeSy6htwSstte47R7vVhLQ=="
   "resolved" "https://registry.npmjs.org/vue2-dropzone/-/vue2-dropzone-3.6.0.tgz"
   "version" "3.6.0"

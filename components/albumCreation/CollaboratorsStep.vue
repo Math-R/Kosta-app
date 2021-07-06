@@ -2,10 +2,7 @@
   <div class="w-3/4 m-auto">
     <input placeholder="Email" type="text" v-model="collaborators" />
 
-    <Button
-      text="Valider"
-      @click.native="submit"
-    ></Button>
+    <Button text="Valider" @click.native="submit"></Button>
   </div>
 </template>
 
@@ -23,12 +20,14 @@ export default {
   },
   methods: {
     async submit() {
-      const { data } = await this.$axios.post(
-        "http://localhost:8000/api/album/" + this.albumSlug + "/invite",
-        { email : this.collaborators }
-      );
+      if (this.collaborators !== "") {
+        const { data } = await this.$axios.post(
+          "http://localhost:8000/api/album/" + this.albumSlug + "/invite",
+          { email: this.collaborators }
+        );
+      }
 
-      this.$emit("next-step", data);
+      this.$emit("next-step");
     },
   },
 };

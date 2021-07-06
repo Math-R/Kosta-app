@@ -1,40 +1,47 @@
 <template>
   <div class="mediaStep">
-    <vue-dropzone
-      ref="myVueDropzone"
-      id="dropzone"
-      :options="dropzoneOptions"
-    ></vue-dropzone>
+    <dropzone
+      id="foo"
+      ref="el"
+      :options="options"
+      :destroyDropzone="true"
+      @vdropzone-complete="uploadSuccess"
+    ></dropzone>
     <Button text="Valider" @click.native="submit"></Button>
   </div>
 </template>
 
 <script>
 import Button from "@/components/common/Button";
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import Dropzone from "nuxt-dropzone";
+import "nuxt-dropzone/dropzone.css";
 
 export default {
   name: "mediaStep",
+  props: ["albumSlug"],
   components: {
-    vueDropzone: vue2Dropzone,
+    Dropzone,
     Button,
   },
   data() {
     return {
-      dropzoneOptions: {
-        url: "https://httpbin.org/post",
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" },
+      options: {
+        url: "http://localhost:8000/api/album/" + this.albumSlug + "/file",
+        withCredentials: true,
       },
+      photos: [],
     };
   },
   methods: {
-    submit() {
-      var data = { test: "test" };
-      this.$emit("next-step", data);
+    uploadSuccess: async function (file, response) {
+      this.photos.push(file);
     },
+    async submit() {
+      this.$emit("next-step");
+    },
+  },
+  mounted() {
+    this.$refs.el.dropzone;
   },
 };
 </script>
