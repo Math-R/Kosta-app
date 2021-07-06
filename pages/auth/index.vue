@@ -7,6 +7,8 @@
 
       <Login v-if="authState === 'login'" @goToRegister="authState = 'register'"/>
       <Register v-if="authState === 'register'" @goToLogin="authState = 'login'" @registered="authState = 'login'"/>
+      <RegisterForMail v-if="authState === 'registerForMail'" @goToLogin="authState = 'login'"
+                        @registered="authState = 'login'"/>
     </div>
   </div>
 </template>
@@ -14,13 +16,19 @@
 <script>
 import Login from "@/components/auth/Login";
 import Register from "@/components/auth/Register"
+import RegisterForMail from "@/components/auth/RegisterForMail";
 
 export default {
   name: "auth",
-  components: {Login, Register},
+  components: {Login, Register, RegisterForMail},
   data() {
     return {
       authState: 'login'
+    }
+  },
+  mounted() {
+    if (this.$route.query.register) {
+      this.authState = 'registerForMail'
     }
   }
 }
