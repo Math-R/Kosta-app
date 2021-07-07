@@ -4,10 +4,8 @@
       <Album
         v-for="album in albums"
         :key="album.id"
-        :title="album.name"
+        :album="album"
         :isSwiper="true"
-        :cover="album.cover"
-        :preview="album.preview"
       ></Album>
       <!-- <AlbumFake
         v-for="album in albums"
@@ -18,13 +16,12 @@
       <router-link
         to="albums/create"
         tag="div"
-        class="swiper-slide px-2 w-full "
+        class="swiper-slide px-2 w-full"
       >
         <div class="createAlbum"><h2>Créer un album</h2></div>
       </router-link>
     </swiper>
     <div class="swiper-pagination mx-auto left-50 mt-4" slot="pagination"></div>
-
   </div>
 </template>
 
@@ -89,6 +86,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.swiper-pagination {
+  .swiper-pagination-bullet-active {
+    background: red;
+  }
+}
+
 .createAlbum {
   @apply flex justify-center items-center rounded-2xl cursor-pointer;
   border: 2px rgb(200, 200, 200) dashed;

@@ -40,7 +40,7 @@
 
       <div v-bind:class="{ displayNone: isActive != 3 }" class="Profile__Update">
         <h3>Supprimer mon compte</h3>
-         <p class="pb-4">Attention, cette action est irreversible !</p>
+         <p class="pb-4">Attention, cette action est irréversible !</p>
 
         <Button @click.native="deleteAccount()" text="Supprimer"></Button>
       </div>

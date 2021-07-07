@@ -3,9 +3,7 @@
     <Album
       v-for="album in albums"
       :key="album.id"
-      :title="album.name"
-      :cover="album.cover"
-      :preview="album.preview"
+      :album="album"
       size="small"
     ></Album>
     <!-- <AlbumFake

@@ -1,13 +1,25 @@
 <template>
   <div class="mediaStep">
     <dropzone
-      id="foo"
+      id="mediaDropzone"
       ref="el"
       :options="options"
       :destroyDropzone="true"
+      :useCustomSlot="true"
       @vdropzone-complete="uploadSuccess"
-    ></dropzone>
-    <Button text="Valider" @click.native="submit" :disabled="isDisabled"></Button>
+    >
+      <div class="dropzone-custom-content">
+        <h3 class="dropzone-custom-title">Glissez et déposez vos photos !</h3>
+        <div class="subtitle">
+          ...ou cliquez pour les sélectionner depuis votre ordinateur
+        </div>
+      </div>
+    </dropzone>
+    <Button
+      text="Valider"
+      @click.native="submit"
+      :disabled="isDisabled"
+    ></Button>
   </div>
 </template>
 
@@ -56,6 +68,11 @@ export default {
 <style lang="scss" scoped>
 .dropzone {
   @apply mb-4;
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
 }
 </style>
 

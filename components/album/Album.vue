@@ -2,13 +2,14 @@
   <div :class="['px-2 w-full', isSwiper ? 'swiper-slide ' : '']">
     <div
       :class="['album cursor-pointer', size]"
-      @click="$router.push('albums/test')"
-      :style="{ backgroundImage: `url('${cover}')` }"
+      @click="$router.push(`albums/${album.slug}`)"
+      :style="{ backgroundImage: `url('${album.cover}')` }"
     >
-      <h2>{{ title }}</h2>
+      <!-- <div class="deleteAlbum" @click.native="deleteAlbum">XXX</div> -->
+      <h2>{{ album.name }}</h2>
       <div class="absolute w-full bottom-0 flex p-2">
         <div
-          v-for="img in preview"
+          v-for="img in album.preview"
           :key="img.id"
           class="bg-cover w-1/4 h-10 mr-2 rounded-xl"
           :style="{ backgroundImage: `url('${img}')` }"
@@ -25,8 +26,9 @@ export default {
     return {};
   },
   props: {
-    title: {
-      type: String,
+    album: {
+      type: Object,
+      default: "",
     },
     size: {
       type: String,
@@ -35,19 +37,17 @@ export default {
     isSwiper: {
       type: Boolean,
       default: false,
-    },
-    preview: {
-      type: Object,
-      default: {},
-    },
-    cover: {
-      type: String,
-      default: "",
-    },
+    }
   },
-  mounted() {
-    console.log(this.preview);
-  },
+  methods: {
+    deleteAlbum() {
+      const { data } = this.$axios.delete(
+        "http://localhost:8000/api/album/",
+      );
+
+      this.$emit("set-album-slug", data.data.slug);
+    },
+  }
 };
 </script>
 
@@ -62,9 +62,16 @@ export default {
   &.small {
     height: 200px;
   }
+  .deleteAlbum {
+    @apply hidden absolute right-0;
+  }
 
   &:hover {
     transform: scale(0.97);
+
+    .deleteAlbum {
+      display: block;
+    }
   }
 
   h2 {

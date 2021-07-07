@@ -2,33 +2,35 @@
   <section class="album py-10">
     <div class="container">
       <div class="text-7xl text-center font-bold mb-10">
-        {{ album.title }}
+        {{ album.name }}
       </div>
       <div class="album-short flex mb-20 items-center">
         <div class="w-6/12">
-          <img :src="album.medias[0][0].url" alt="" class="rounded-xl">
+          <img :src="album.medias[0].photos[0].url" alt="" class="rounded-xl">
         </div>
         <div class="w-6/12 pl-8">
           <div class="text-5xl">
             Du {{ startDate }} au {{ endDate }}
+            {{ album.description }}
           </div>
         </div>
       </div>
       <div class="text-6xl text-center mb-20">
-        11 Juin 2021
+        {{ album.medias[0].titre }}
       </div>
       <div class="masonry mx-auto w-10/12 mb-20">
-<!--        <div class="bg-center bg-no-repeat bg-cover rounded-xl" v-for="(photo, index) in album.days[0].photos"-->
-<!--             :style="{backgroundImage: `url(${photo.url})`}" :key="index"></div>-->
+       <div class="bg-center bg-no-repeat bg-cover rounded-xl" v-for="(photo, index) in album.medias[0].photos"
+          :style="{backgroundImage: `url(${photo.url})`}" :key="index"></div>
       </div>
     </div>
-    <div class="text-6xl text-center mb-20">
-      12 Juin 2021
+
+    <div v-if="album.medias[1]" class="text-6xl text-center mb-20">
+      {{ album.medias[1].titre }}
     </div>
-    <swiper :options="swiperOption" class="swiper" >
-<!--      <div class="swiper-slide w-1/3 " v-for="(photo, index) in album.days[1].photos">-->
-<!--        <div class="bg-cover bg-center bg-no-repeat w-full" :style="{backgroundImage: `url(${photo.url})`, height: '500px'}"></div>-->
-<!--      </div>-->
+    <swiper v-if="album.medias[1]" :options="swiperOption" class="swiper">
+     <div class="swiper-slide w-1/3 " v-for="(photo, index) in album.medias[1].photos" :key="index">
+       <div class="bg-cover bg-center bg-no-repeat w-full" :style="{backgroundImage: `url(${photo.url})`, height: '500px'}"></div>
+     </div>
     </swiper>
 
   </section>
