@@ -6,7 +6,7 @@
       </div>
       <div class="album-short flex mb-20 items-center">
         <div class="w-6/12">
-          <img :src="album.days[0].photos[0].url" alt="" class="rounded-xl">
+          <img :src="album.medias[0][0].url" alt="" class="rounded-xl">
         </div>
         <div class="w-6/12 pl-8">
           <div class="text-5xl">
@@ -18,17 +18,17 @@
         11 Juin 2021
       </div>
       <div class="masonry mx-auto w-10/12 mb-20">
-        <div class="bg-center bg-no-repeat bg-cover rounded-xl" v-for="(photo, index) in album.days[0].photos"
-             :style="{backgroundImage: `url(${photo.url})`}" :key="index"></div>
+<!--        <div class="bg-center bg-no-repeat bg-cover rounded-xl" v-for="(photo, index) in album.days[0].photos"-->
+<!--             :style="{backgroundImage: `url(${photo.url})`}" :key="index"></div>-->
       </div>
     </div>
     <div class="text-6xl text-center mb-20">
       12 Juin 2021
     </div>
     <swiper :options="swiperOption" class="swiper" >
-      <div class="swiper-slide w-1/3 " v-for="(photo, index) in album.days[1].photos">
-        <div class="bg-cover bg-center bg-no-repeat w-full" :style="{backgroundImage: `url(${photo.url})`, height: '500px'}"></div>
-      </div>
+<!--      <div class="swiper-slide w-1/3 " v-for="(photo, index) in album.days[1].photos">-->
+<!--        <div class="bg-cover bg-center bg-no-repeat w-full" :style="{backgroundImage: `url(${photo.url})`, height: '500px'}"></div>-->
+<!--      </div>-->
     </swiper>
 
   </section>
@@ -45,80 +45,7 @@ export default {
   data() {
     return {
       album: {
-        title: 'Vacances entre potes',
-        description: '',
-        start_date: '11-06-2011',
-        end_date: '14-06-2011',
-        days: [
-          {
-            date: '11-06-2021',
-            photos: [
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/1.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/2.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/3.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/4.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/5.jpg')
-              },
 
-
-            ]
-          },
-          {
-            date: '12-06-2021',
-            photos: [
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/1.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/2.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/3.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/4.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/5.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/6.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/8.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/9.jpg')
-              },
-              {
-                date: '11-06-2021',
-                url: require('~/assets/images/10.jpg')
-              },
-            ]
-          },
-        ]
       },
       swiperOption: {
         slidesPerView: 2,
@@ -137,6 +64,10 @@ export default {
         },
       },
     }
+  },
+  async fetch() {
+    const { data } = await this.$axios.get(`http://localhost:8000/api/album/${this.$route.params.name}`);
+    this.album = data.data;
   },
   methods: {
     width() {
