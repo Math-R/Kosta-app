@@ -7,7 +7,7 @@
       :destroyDropzone="true"
       @vdropzone-complete="uploadSuccess"
     ></dropzone>
-    <Button text="Valider" @click.native="submit"></Button>
+    <Button text="Valider" @click.native="submit" :disabled="isDisabled"></Button>
   </div>
 </template>
 
@@ -25,12 +25,18 @@ export default {
   },
   data() {
     return {
+      stepTitle: "Ajoutez des photos",
       options: {
         url: "http://localhost:8000/api/album/" + this.albumSlug + "/file",
         withCredentials: true,
       },
       photos: [],
     };
+  },
+  computed: {
+    isDisabled() {
+      return this.photos.length === 0;
+    },
   },
   methods: {
     uploadSuccess: async function (file, response) {
@@ -41,6 +47,7 @@ export default {
     },
   },
   mounted() {
+    this.$emit("set-title", this.stepTitle);
     this.$refs.el.dropzone;
   },
 };

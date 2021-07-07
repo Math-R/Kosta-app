@@ -56,8 +56,7 @@ export default {
 //     min-height: calc(100vh - 76px);
 // }
 .filter {
-  @apply flex -mt-8 float-right;
-  color: #c85353;
+  @apply flex -mt-8 float-right text-red;
 
   .rotateSvg {
     transform: rotate(90deg);

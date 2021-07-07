@@ -4,8 +4,10 @@
       <Album
         v-for="album in albums"
         :key="album.id"
-        v-bind:text="album.name"
+        :title="album.name"
         :isSwiper="true"
+        :cover="album.cover"
+        :preview="album.preview"
       ></Album>
       <!-- <AlbumFake
         v-for="album in albums"
@@ -88,7 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .createAlbum {
-  @apply flex justify-center items-center rounded-2xl;
+  @apply flex justify-center items-center rounded-2xl cursor-pointer;
   border: 2px rgb(200, 200, 200) dashed;
   height: 400px;
   transition: transform 0.2s;
@@ -99,11 +101,11 @@ export default {
   }
 
   &:hover {
-    border-color: #c85353;
+    @apply border-red;
     transform: scale(0.97);
 
     h2 {
-      color: #c85353;
+      @apply text-red;
     }
   }
 }

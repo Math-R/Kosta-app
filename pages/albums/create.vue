@@ -3,8 +3,8 @@
     <div class="container">
       <div
         :class="[
-          'albumCreationContainer bg-white w-full lg:w-1/2',
-          currentStep,
+          'albumCreationContainer bg-white w-full',
+          currentStep === 2 ? 'lg:w-2/3' : 'lg:w-1/2',
         ]"
       >
         <h1>{{ stepTitle }}</h1>
@@ -44,7 +44,7 @@ export default {
       steps: [
         "DetailsStep",
         "CollaboratorsStep",
-        "mediaStep",
+        "MediaStep",
         "LastStep",
       ],
       stepTitle: "",
@@ -84,7 +84,7 @@ export default {
   @apply m-auto mt-8 p-4 rounded-xl text-center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);
 
-  &.mediaStep {
+  &.largeContainer {
     width: 75%;
   }
 }
