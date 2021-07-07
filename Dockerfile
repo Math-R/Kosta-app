@@ -6,4 +6,6 @@ COPY . .
 
 RUN npm i
 
-EXPOSE 3000
+RUN npm run generate
+
+EXPOSE 80

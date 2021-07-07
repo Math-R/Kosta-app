@@ -24,9 +24,10 @@
 </template>
 
 <script>
-import Button from "@/components/common/Button";
+
 import Dropzone from "nuxt-dropzone";
 import "nuxt-dropzone/dropzone.css";
+import Button from "~/components/common/Button";
 
 export default {
   name: "mediaStep",

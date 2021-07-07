@@ -23,20 +23,17 @@
 </template>
 
 <script>
-import Button from "@/components/common/Button";
-import DetailsStep from "@/components/albumCreation/DetailsStep";
-import CollaboratorsStep from "@/components/albumCreation/CollaboratorsStep";
-import MediaStep from "@/components/albumCreation/MediaStep";
-import LastStep from "@/components/albumCreation/LastStep";
-import ProgressBar from "@/components/albumCreation/ProgressBar";
+
+import ProgressBar from "~/components/albumCreation/ProgressBar";
+import DetailsStep from "~/components/albumCreation/DetailsStep";
+import CollaboratorsStep from "~/components/albumCreation/CollaboratorsStep";
+import Button from "~/components/common/Button";
 
 export default {
   components: {
     ProgressBar,
     DetailsStep,
     CollaboratorsStep,
-    MediaStep,
-    LastStep,
     Button,
   },
   data() {

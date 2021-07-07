@@ -19,8 +19,10 @@
 </template>
 
 <script>
-import Album from "@/components/album/Album";
-import AlbumFake from "@/components/album/AlbumFake";
+
+
+import Album from "~/components/album/Album";
+import AlbumFake from "~/components/album/AlbumFake";
 
 export default {
   name: "albumsGrid",

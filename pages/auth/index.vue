@@ -14,9 +14,11 @@
 </template>
 
 <script>
-import Login from "@/components/auth/Login";
-import Register from "@/components/auth/Register"
-import RegisterForMail from "@/components/auth/RegisterForMail";
+
+
+import Login from "~/components/auth/Login";
+import Register from "~/components/auth/Register";
+import RegisterForMail from "~/components/auth/RegisterForMail";
 
 export default {
   name: "auth",

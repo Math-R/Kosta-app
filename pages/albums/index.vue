@@ -25,9 +25,10 @@
 </template>
 
 <script>
-import Album from "@/components/album/Album";
-import AlbumsSlider from "@/components/album/AlbumsSlider";
-import AlbumsGrid from "@/components/album/AlbumsGrid";
+
+import Album from "~/components/album/Album";
+import AlbumsSlider from "~/components/album/AlbumsSlider";
+import AlbumsGrid from "~/components/album/AlbumsGrid";
 
 export default {
   name: "albums",

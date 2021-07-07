@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import Button from "@/components/common/Button";
+
+import Button from "~/components/common/Button";
 
 export default {
   name: "RegisterForMail",

@@ -27,6 +27,7 @@
 </template>
 <script>
 import Navlink from "~/components/Navlink";
+
 export default {
   components: {Navlink},
   mixins: [],

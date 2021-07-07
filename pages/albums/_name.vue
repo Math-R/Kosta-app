@@ -37,13 +37,15 @@
 </template>
 
 <script>
-import moment from "moment";
+import lsmoment from "moment";
 import {Swiper, SwiperSlide} from "vue-awesome-swiper";
-import "swiper/css/swiper.css";
+// import 'swiper/swiper-bundle.css'
+
+
 
 export default {
   components: {Swiper,
-    SwiperSlide,},
+    SwiperSlide},
   data() {
     return {
       album: {

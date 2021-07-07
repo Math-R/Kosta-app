@@ -2,7 +2,9 @@ version: "3.5"
 services:
   front:
     image: node:14
-    command: npm run docker
+    command: npm run start
+    build: .
+    container_name: 'front'
     volumes:
       - ./:/usr/src/app
     working_dir: /usr/src/app

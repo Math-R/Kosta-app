@@ -26,11 +26,14 @@
 </template>
 
 <script>
-import Album from "@/components/album/Album";
-import AlbumFake from "@/components/album/AlbumFake";
 
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-import "swiper/css/swiper.css";
+// import "swiper/css/swiper.css";
+// import 'swiper/swiper-bundle.css'
+
+
+import AlbumFake from "~/components/album/AlbumFake";
+import Album from "~/components/album/Album";
 
 export default {
   name: "albumsSlider",
