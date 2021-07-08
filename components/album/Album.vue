@@ -41,8 +41,9 @@ export default {
   },
   methods: {
     deleteAlbum() {
+
       const { data } = this.$axios.delete(
-        "http://localhost:8000/api/album/",
+        process.env.BASE_URL +"/api/album/",
       );
 
       this.$emit("set-album-slug", data.data.slug);

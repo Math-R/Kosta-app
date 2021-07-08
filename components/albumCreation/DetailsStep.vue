@@ -48,7 +48,7 @@ export default {
         description: this.description,
       };
       const { data } = await this.$axios.post(
-        "http://localhost:8000/api/album",
+        process.env.BASE_URL + "/api/album",
         formData
       );
 

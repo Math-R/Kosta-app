@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async register() {
-      await this.$axios.post('http://localhost:8000/api/register',
+      await this.$axios.post(process.env.BASE_URL + '/api/register',
         {
           name: this.name,
           email: this.email,

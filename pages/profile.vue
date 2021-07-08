@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <section class="Profile__Header">
-      <img class="Logo w-21 m-4 rounded-full" src="~/assets/images/avatar.jpg" alt="Logo Kosta" />
+      <img class="Logo w-21 m-4 rounded-full" src="~/assets/images/avatar.jpg" alt="Logo Kosta"/>
       <h1 class="text-white">{{ $store.state.user.name }}</h1>
       <div class="Profile__Menu">
         <ul>
@@ -40,7 +40,7 @@
 
       <div v-bind:class="{ displayNone: isActive != 3 }" class="Profile__Update">
         <h3>Supprimer mon compte</h3>
-         <p class="pb-4">Attention, cette action est irréversible !</p>
+        <p class="pb-4">Attention, cette action est irréversible !</p>
 
         <Button @click.native="deleteAccount()" text="Supprimer"></Button>
       </div>
@@ -58,7 +58,7 @@
 import Button from "~/components/common/Button";
 
 export default {
-  components: { Button },
+  components: {Button},
   data() {
     return {
       name: null,
@@ -72,8 +72,8 @@ export default {
     this.apiResult = '';
   },
   methods: {
-    async updateProfile () {
-      await this.$axios.patch('http://localhost:8000/api/user/update/profile',
+    async updateProfile() {
+      await this.$axios.patch(process.env.BASE_URL + '/api/user/update/profile',
         {name: this.name}
       ).then(response => {
         this.apiResult = response.data.message;
@@ -81,8 +81,8 @@ export default {
 
       this.$store.commit('user/updateName', this.name);
     },
-    async updatePassword () {
-      await this.$axios.patch('http://localhost:8000/api/user/update/password',
+    async updatePassword() {
+      await this.$axios.patch(process.env.BASE_URL + '/api/user/update/password',
         {
           password: this.password
         }
@@ -91,19 +91,19 @@ export default {
         this.password = null;
       });
     },
-    async deleteAccount () {
+    async deleteAccount() {
       await this.$axios
-        .delete('http://localhost:8000/api/user/delete')
-        .then(response => {
-          this.$auth.logout();
-          this.$store.commit('user/resetState');
-          localStorage.removeItem('token');
+      .delete('http://localhost:8000/api/user/delete')
+      .then(response => {
+        this.$auth.logout();
+        this.$store.commit('user/resetState');
+        localStorage.removeItem('token');
       });
     }
   },
-  watch:{
+  watch: {
     apiResult() {
-       if (this.apiResult != '') {
+      if (this.apiResult != '') {
         setTimeout(() => this.apiResult = '', 2000);
       }
     }
@@ -120,7 +120,7 @@ export default {
 }
 
 .Profile__Update {
-  @apply  w-2/3 flex flex-col items-center justify-center p-8 m-auto;
+  @apply w-2/3 flex flex-col items-center justify-center p-8 m-auto;
 
   h3 {
     @apply pb-2 text-lg font-bold;
