@@ -30,7 +30,7 @@ import "nuxt-dropzone/dropzone.css";
 import Button from "~/components/common/Button";
 
 export default {
-  name: "mediaStep",
+  name: "MediaStep",
   props: ["albumSlug"],
   components: {
     Dropzone,

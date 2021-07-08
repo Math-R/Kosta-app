@@ -27,6 +27,8 @@
 import ProgressBar from "~/components/albumCreation/ProgressBar";
 import DetailsStep from "~/components/albumCreation/DetailsStep";
 import CollaboratorsStep from "~/components/albumCreation/CollaboratorsStep";
+import MediaStep from "~/components/albumCreation/MediaStep";
+import LastStep from "~/components/albumCreation/LastStep";
 import Button from "~/components/common/Button";
 
 export default {
@@ -34,6 +36,8 @@ export default {
     ProgressBar,
     DetailsStep,
     CollaboratorsStep,
+    MediaStep,
+    LastStep,
     Button,
   },
   data() {

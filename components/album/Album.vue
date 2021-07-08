@@ -5,7 +5,7 @@
       @click="$router.push(`albums/${album.slug}`)"
       :style="{ backgroundImage: `url('${album.cover}')` }"
     >
-      <!-- <div class="deleteAlbum" @click.native="deleteAlbum">XXX</div> -->
+      <!-- <div class="deleteAlbum" v-on:click="deleteAlbum">Supprimer</div> -->
       <h2>{{ album.name }}</h2>
       <div class="absolute w-full bottom-0 flex p-2">
         <div

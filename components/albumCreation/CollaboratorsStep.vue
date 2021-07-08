@@ -15,8 +15,13 @@
 </template>
 
 <script>
+import Button from "~/components/common/Button";
+
 export default {
   props: ["albumSlug"],
+  components: {
+    Button
+  },
   data() {
     return {
       stepTitle: "Invitez des ami.e.s",

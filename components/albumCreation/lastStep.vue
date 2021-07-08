@@ -9,6 +9,7 @@
 import Button from "~/components/common/Button";
 
 export default {
+  props: ["albumSlug"],
   name: "LastStep",
   components: {
     Button,
@@ -22,7 +23,7 @@ export default {
     this.$emit("set-title", this.stepTitle);
 
     setTimeout(() => {
-      this.$router.push('test')
+      this.$router.push(this.albumSlug)
     }, 2000);
   },
 };
