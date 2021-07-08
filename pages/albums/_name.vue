@@ -43,6 +43,7 @@ import {Swiper, SwiperSlide} from "vue-awesome-swiper";
 // import "swiper.scss";
 import './../../assets/css/swipper.css';
 
+
 export default {
   components: {Swiper,
     SwiperSlide},
@@ -70,7 +71,7 @@ export default {
     }
   },
   async fetch() {
-    const { data } = await this.$axios.get(`http://localhost:8000/api/album/${this.$route.params.name}`);
+    const { data } = await this.$axios.get( `${process.env.BASE_URL}/api/album/${this.$route.params.name}`);
     this.album = data.data;
   },
   methods: {

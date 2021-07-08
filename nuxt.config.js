@@ -32,6 +32,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/dotenv'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -64,7 +65,7 @@ export default {
     strategies: {
       'laravelSanctum': {
         provider: 'laravel/sanctum',
-        url: 'http://localhost:8000',
+        url: process.env.BASE_URL,
         endpoints: {
           login: {
             url: '/api/login',
@@ -91,20 +92,20 @@ export default {
   },
   publicRuntimeConfig: {
     axios: {
-      baseUrl: 'http://localhost:8000',
-      browserBaseURL: 'http://localhost:8000',
+      baseUrl: process.env.BASE_URL,
+      browserBaseURL: process.env.BASE_URL,
       debug: process.env.AXIOS_DEBUG,
     },
   },
   privateRuntimeConfig: {
     axios: {
       debug: process.env.AXIOS_DEBUG,
-      baseURL: 'http://localhost:8000'
+      baseURL: process.env.BASE_URL
     }
   },
   proxy: {
     '/laravel': {
-      target: 'https://laravel-auth.nuxtjs.app',
+      target: process.env.BASE_URL,
       pathRewrite: { '^/laravel': '/' }
     }
   },

@@ -30,6 +30,7 @@ import Album from "~/components/album/Album";
 import AlbumsSlider from "~/components/album/AlbumsSlider";
 import AlbumsGrid from "~/components/album/AlbumsGrid";
 
+
 export default {
   name: "albums",
   components: {
@@ -44,7 +45,7 @@ export default {
     };
   },
   async fetch() {
-    const { data } = await this.$axios.get("http://localhost:8000/api/albums");
+    const { data } = await this.$axios.get(process.env.BASE_URL + "/api/albums");
     this.albums = data.data;
   },
 };
