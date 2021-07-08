@@ -1,19 +1,21 @@
 <template>
   <div :class="['px-2 w-full', isSwiper ? 'swiper-slide ' : '']">
-      <div class="deleteAlbum" v-on:click="deleteAlbum">Supprimer</div>
-    <div
-      :class="['album cursor-pointer', size]"
-      @click="$router.push(`albums/${album.slug}`)"
-      :style="{ backgroundImage: `url('${album.cover}')` }"
-    >
-      <h2>{{ album.name }}</h2>
-      <div class="absolute w-full bottom-0 flex p-2">
-        <div
-          v-for="img in album.preview"
-          :key="img.id"
-          class="bg-cover w-1/4 h-10 mr-2 rounded-xl"
-          :style="{ backgroundImage: `url('${img}')` }"
-        />
+    <div class="relative">
+      <div v-on:click="deleteAlbum" class="z-10 absolute right-0 h-6 w-6 bg-red rounded-full flex items-center justify-center text-white transform -translate-y-2 translate-x-1">
+        <font-awesome-icon :icon="['fas', 'trash']" />
+      </div>
+      <div :class="['album cursor-pointer', size]"
+        @click="$router.push(`albums/${album.slug}`)"
+        :style="{ backgroundImage: `url('${album.cover}')` }">
+        <h2>{{ album.name }}</h2>
+        <div class="absolute w-full bottom-0 flex p-2">
+          <div
+            v-for="img in album.preview"
+            :key="img.id"
+            class="bg-cover w-1/4 h-10 mr-2 rounded-xl"
+            :style="{ backgroundImage: `url('${img}')` }"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -37,21 +39,31 @@ export default {
     isSwiper: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   methods: {
     deleteAlbum() {
-     this.$axios.delete(
-        process.env.BASE_URL +"/api/album/delete/" + this.album.id,
+      this.$axios.delete(
+        process.env.BASE_URL + "/api/album/delete/" + this.album.id
       );
 
-    this.$store.commit("albums/removeAlbum", this.album.id);
+      this.$store.commit("albums/removeAlbum", this.album.id);
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+// .deleteAlbum {
+// @apply z-10 flex justify-center items-center fixed bg-red text-white rounded-full;
+// height: 50px;
+// width: 50px;
+// transition: 0.2s;
+
+// &:hover {
+//   @apply cursor-pointer;
+// }
+
 .album {
   @apply relative bg-cover rounded-xl;
   // background-image: url("~@/assets/images/1.jpg");
@@ -62,10 +74,6 @@ export default {
   &.small {
     height: 200px;
   }
-  .deleteAlbum {
-    @apply hidden absolute right-0;
-  }
-
   &:hover {
     transform: scale(0.97);
 

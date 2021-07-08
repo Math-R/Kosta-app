@@ -85,6 +85,13 @@ export default {
     width() {
       return Math.floor(Math.random() * 4) + 1;
     },
+    deleteAlbum() {
+      this.$axios.delete(
+        process.env.BASE_URL + "/api/album/delete/" + this.album.id
+      );
+
+      this.$store.commit("albums/removeAlbum", this.album.id);
+    },
   },
   computed: {
     startDate() {

@@ -89,12 +89,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper-pagination {
-  .swiper-pagination-bullet-active {
-    background: red;
-  }
+.swiper-container {
+  padding-top : 15px;
 }
-
 .createAlbum {
   @apply flex justify-center items-center rounded-2xl cursor-pointer;
   border: 2px rgb(200, 200, 200) dashed;

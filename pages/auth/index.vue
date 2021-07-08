@@ -2,12 +2,12 @@
   <div class="Auth h-screen">
     <div class="Auth__Container rounded-xl">
 
-      <img v-if="false" src="~/assets/images/background-clouds.png" alt="Cover Kosta"/>
-      <img v-else src="~/assets/images/background-museum.png" alt="Cover Kosta"/>
+      <img v-if="false" class="hidden md:block" src="~/assets/images/background-clouds.png" alt="Cover Kosta"/>
+      <img v-else class="hidden md:block" src="~/assets/images/background-museum.png" alt="Cover Kosta"/>
 
-      <Login v-if="authState === 'login'" @goToRegister="authState = 'register'"/>
-      <Register v-if="authState === 'register'" @goToLogin="authState = 'login'" @registered="authState = 'login'"/>
-      <RegisterForMail v-if="authState === 'registerForMail'" @goToLogin="authState = 'login'"
+      <Login class="w-full md:w-1/2" v-if="authState === 'login'" @goToRegister="authState = 'register'"/>
+      <Register class="w-full md:w-1/2" v-if="authState === 'register'" @goToLogin="authState = 'login'" @registered="authState = 'login'"/>
+      <RegisterForMail class="w-full md:w-1/2" v-if="authState === 'registerForMail'" @goToLogin="authState = 'login'"
                         @registered="authState = 'login'"/>
     </div>
   </div>
@@ -65,7 +65,6 @@ export default {
 }
 
 .Auth__Container > form {
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,13 +93,6 @@ export default {
 }
 
 .Auth__Container > form > button {
-  width: 60%;
-  background: #DE0000;
-  color: white;
-  border-radius: 15px;
-  font-size: 17px;
-  height: 50px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);
   margin-bottom: 1rem;
 }
 

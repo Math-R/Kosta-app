@@ -120,7 +120,7 @@ export default {
 }
 
 .Profile__Update {
-  @apply w-2/3 flex flex-col items-center justify-center p-8 m-auto;
+  @apply w-full flex flex-col items-center justify-center p-8 m-auto;
 
   h3 {
     @apply pb-2 text-lg font-bold;
