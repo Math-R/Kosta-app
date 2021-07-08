@@ -1,11 +1,11 @@
 <template>
   <div :class="['px-2 w-full', isSwiper ? 'swiper-slide ' : '']">
+      <div class="deleteAlbum" v-on:click="deleteAlbum">Supprimer</div>
     <div
       :class="['album cursor-pointer', size]"
       @click="$router.push(`albums/${album.slug}`)"
       :style="{ backgroundImage: `url('${album.cover}')` }"
     >
-      <!-- <div class="deleteAlbum" v-on:click="deleteAlbum">Supprimer</div> -->
       <h2>{{ album.name }}</h2>
       <div class="absolute w-full bottom-0 flex p-2">
         <div
@@ -41,11 +41,11 @@ export default {
   },
   methods: {
     deleteAlbum() {
-      const { data } = this.$axios.delete(
-        "http://localhost:8000/api/album/",
+      this.$axios.delete(
+        "http://localhost:8000/api/album/delete/" + this.album.slug,
       );
 
-      this.$emit("set-album-slug", data.data.slug);
+    this.$store.commit("albums/removeAlbum", this.album.id);
     },
   }
 };

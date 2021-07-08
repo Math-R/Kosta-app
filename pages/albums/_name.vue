@@ -1,12 +1,12 @@
 <template>
   <section v-if="album.medias" class="album py-10">
-    <div  class="container">
+    <div class="container">
       <div class="text-7xl text-center font-bold mb-10">
         {{ album.name }}
       </div>
       <div class="album-short flex mb-20 items-center">
         <div class="w-6/12">
-          <img :src="album.medias[0].photos[0].url" alt="" class="rounded-xl">
+          <img :src="album.medias[0].photos[0].url" alt="" class="rounded-xl" />
         </div>
         <div class="w-6/12 pl-8">
           <div class="text-5xl">
@@ -15,43 +15,48 @@
           </div>
         </div>
       </div>
-      <div class="text-6xl text-center mb-20">
-        {{ album.medias[0].titre }}
-      </div>
-      <div class="masonry mx-auto w-10/12 mb-20">
-       <div class="bg-center bg-no-repeat bg-cover rounded-xl" v-for="(photo, index) in album.medias[0].photos"
-          :style="{backgroundImage: `url(${photo.url})`}" :key="index"></div>
+      <div v-for="(group, index) in album.medias" :key="index">
+        <div class="text-6xl text-center mb-20">
+          {{ group.titre }}
+        </div>
+        <div v-if="!(index % 2)" class="masonry mx-auto w-10/12 mb-20">
+          <div
+            class="bg-center bg-no-repeat bg-cover rounded-xl"
+            v-for="(photo, index) in group.photos"
+            :style="{ backgroundImage: `url(${photo.url})` }"
+            :key="index"
+          ></div>
+        </div>
+
+        <swiper v-if="index % 2" :options="swiperOption" class="swiper">
+          <div
+            class="swiper-slide w-1/3"
+            v-for="(photo, index) in group.photos"
+            :key="index"
+          >
+            <div
+              class="bg-cover bg-center bg-no-repeat w-full"
+              :style="{ backgroundImage: `url(${photo.url})`, height: '500px' }"
+            ></div>
+          </div>
+        </swiper>
       </div>
     </div>
-
-    <div v-if="album.medias[1]" class="text-6xl text-center mb-20">
-      {{ album.medias[1].titre }}
-    </div>
-    <swiper v-if="album.medias[1]" :options="swiperOption" class="swiper">
-     <div class="swiper-slide w-1/3 " v-for="(photo, index) in album.medias[1].photos" :key="index">
-       <div class="bg-cover bg-center bg-no-repeat w-full" :style="{backgroundImage: `url(${photo.url})`, height: '500px'}"></div>
-     </div>
-    </swiper>
-
   </section>
 </template>
 
 <script>
 import lsmoment from "moment";
-import {Swiper, SwiperSlide} from "vue-awesome-swiper";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 // import '~/swiper/swiper-bundle.css'
 // import "swiper.scss";
-import './../../assets/css/swipper.css';
-
+import "./../../assets/css/swipper.css";
 
 export default {
-  components: {Swiper,
-    SwiperSlide},
+  components: { Swiper, SwiperSlide },
   data() {
     return {
-      album: {
-
-      },
+      album: {},
       swiperOption: {
         slidesPerView: 2,
         spaceBetween: 20,
@@ -68,27 +73,29 @@ export default {
           dynamicBullets: true,
         },
       },
-    }
+    };
   },
   async fetch() {
-    const { data } = await this.$axios.get( `${process.env.BASE_URL}/api/album/${this.$route.params.name}`);
+    const { data } = await this.$axios.get(
+      `${process.env.BASE_URL}/api/album/${this.$route.params.name}`
+    );
     this.album = data.data;
   },
   methods: {
     width() {
-      return Math.floor(Math.random() * 4) + 1
-    }
+      return Math.floor(Math.random() * 4) + 1;
+    },
   },
   computed: {
     startDate() {
-      return lsmoment("2021-06-11T00:00:00+0100").format("D")
+      return lsmoment("2021-06-11T00:00:00+0100").format("D");
     },
     endDate() {
-      lsmoment.locale('fr')
-      return lsmoment("2021-06-14T00:00:00+0100").format("D MMMM")
-    }
-  }
-}
+      lsmoment.locale("fr");
+      return lsmoment("2021-06-14T00:00:00+0100").format("D MMMM");
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .masonry {
@@ -98,8 +105,7 @@ export default {
   grid-auto-rows: minmax(20em, auto);
   grid-auto-flow: dense;
 
-
-  div:nth-child(3n +1) {
+  div:nth-child(3n + 1) {
     grid-column: span 2;
     grid-row: span 2;
   }
@@ -111,9 +117,7 @@ export default {
   div:nth-child(6n) {
     grid-row: span 2;
     grid-column: span 1;
-
   }
-
 }
 .swiper-slide {
   text-align: center;
