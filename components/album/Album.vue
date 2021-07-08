@@ -41,8 +41,8 @@ export default {
   },
   methods: {
     deleteAlbum() {
-      this.$axios.delete(
-        "http://localhost:8000/api/album/delete/" + this.album.slug,
+     this.$axios.delete(
+        process.env.BASE_URL +"/api/album/delete/" + this.album.id,
       );
 
     this.$store.commit("albums/removeAlbum", this.album.id);

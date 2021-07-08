@@ -40,7 +40,7 @@ export default {
     return {
       stepTitle: "Ajoutez des photos",
       options: {
-        url: "http://localhost:8000/api/album/" + this.albumSlug + "/file",
+        url: process.env.BASE_URL + "/api/album/" + this.albumSlug + "/file",
         withCredentials: true,
       },
       photos: [],

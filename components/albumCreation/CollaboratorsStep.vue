@@ -38,7 +38,7 @@ export default {
     },
     async submit() {
       const { data } = await this.$axios.post(
-        "http://localhost:8000/api/album/" + this.albumSlug + "/invite",
+        process.env.BASE_URL + "/api/album/" + this.albumSlug + "/invite",
         { email: this.collab }
       );
 
