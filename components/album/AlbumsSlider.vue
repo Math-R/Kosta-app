@@ -28,8 +28,7 @@
 <script>
 
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-// import "swiper/css/swiper.css";
-// import 'swiper/swiper-bundle.css'
+import "swiper/css/swiper.css";
 
 
 import AlbumFake from "~/components/album/AlbumFake";

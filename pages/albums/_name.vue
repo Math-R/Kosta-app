@@ -1,6 +1,6 @@
 <template>
-  <section class="album py-10">
-    <div class="container">
+  <section v-if="album.medias" class="album py-10">
+    <div  class="container">
       <div class="text-7xl text-center font-bold mb-10">
         {{ album.name }}
       </div>
@@ -80,11 +80,11 @@ export default {
   },
   computed: {
     startDate() {
-      return moment("2021-06-11T00:00:00+0100").format("D")
+      return lsmoment("2021-06-11T00:00:00+0100").format("D")
     },
     endDate() {
-      moment.locale('fr')
-      return moment("2021-06-14T00:00:00+0100").format("D MMMM")
+      lsmoment.locale('fr')
+      return lsmoment("2021-06-14T00:00:00+0100").format("D MMMM")
     }
   }
 }
