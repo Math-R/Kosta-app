@@ -39,9 +39,9 @@
 <script>
 import lsmoment from "moment";
 import {Swiper, SwiperSlide} from "vue-awesome-swiper";
-// import 'swiper/swiper-bundle.css'
-
-
+// import '~/swiper/swiper-bundle.css'
+// import "swiper.scss";
+import './../../assets/css/swipper.css';
 
 export default {
   components: {Swiper,
