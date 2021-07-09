@@ -9,15 +9,15 @@
           <img :src="album.medias[0].photos[0].url" alt="" class="rounded-xl" />
         </div>
         <div class="w-6/12 pl-8">
-          <div class="text-5xl">
+          <div class="text-5xl font-medium">
             Du {{ startDate }} au {{ endDate }}
-            {{ album.description }}
           </div>
+            <div class="text-2xl text-black text-opacity-75 ">{{ album.description }}</div>
         </div>
       </div>
       <div v-for="(group, index) in album.medias" :key="index">
         <div class="text-6xl text-center mb-20">
-          {{ group.titre }}
+          {{ formatDate(group.titre) }}
         </div>
         <div v-if="!(index % 2)" class="masonry mx-auto w-10/12 mb-20">
           <div
@@ -28,7 +28,7 @@
           ></div>
         </div>
 
-        <swiper v-if="index % 2" :options="swiperOption" class="swiper">
+        <swiper v-if="index % 2" :options="swiperOption" class="swiper mb-20">
           <div
             class="swiper-slide w-1/3"
             v-for="(photo, index) in group.photos"
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import lsmoment from "moment";
+import moment from "moment";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 // import '~/swiper/swiper-bundle.css'
 // import "swiper.scss";
@@ -85,22 +85,21 @@ export default {
     width() {
       return Math.floor(Math.random() * 4) + 1;
     },
-    deleteAlbum() {
-      this.$axios.delete(
-        process.env.BASE_URL + "/api/album/delete/" + this.album.id
-      );
-
-      this.$store.commit("albums/removeAlbum", this.album.id);
+    formatDate(dateTitle) {
+      moment.locale("fr");
+      return moment(dateTitle).format("D MMMM YYYY");
     },
   },
   computed: {
     startDate() {
-      return lsmoment("2021-06-11T00:00:00+0100").format("D");
+      moment.locale("fr");
+      return this.album.medias[0].titre ? moment(this.album.medias[0].titre).format("D MMMM") : "1";
     },
     endDate() {
-      lsmoment.locale("fr");
-      return lsmoment("2021-06-14T00:00:00+0100").format("D MMMM");
-    },
+      moment.locale("fr");
+      const lastMediaArrayIndex = this.album.medias.length - 1;
+      return this.album.medias[lastMediaArrayIndex].titre ? moment(this.album.medias[lastMediaArrayIndex].titre).format("D MMMM") : "9 Juillet";
+    }
   },
 };
 </script>

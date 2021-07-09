@@ -1,12 +1,14 @@
 <template>
   <div :class="['px-2 w-full', isSwiper ? 'swiper-slide ' : '']">
     <div class="relative">
-      <div v-on:click="deleteAlbum" class="z-10 absolute right-0 h-6 w-6 bg-red rounded-full flex items-center justify-center text-white transform -translate-y-2 translate-x-1">
+      <div v-on:click="deleteAlbum" class="deleteAlbum">
         <font-awesome-icon :icon="['fas', 'trash']" />
       </div>
-      <div :class="['album cursor-pointer', size]"
+      <div
+        :class="['album cursor-pointer', size]"
         @click="$router.push(`albums/${album.slug}`)"
-        :style="{ backgroundImage: `url('${album.cover}')` }">
+        :style="{ backgroundImage: `url('${album.cover}')` }"
+      >
         <h2>{{ album.name }}</h2>
         <div class="absolute w-full bottom-0 flex p-2">
           <div
@@ -54,15 +56,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .deleteAlbum {
-// @apply z-10 flex justify-center items-center fixed bg-red text-white rounded-full;
-// height: 50px;
-// width: 50px;
-// transition: 0.2s;
-
-// &:hover {
-//   @apply cursor-pointer;
-// }
+.deleteAlbum {
+  @apply z-10 absolute right-0 h-6 w-6 bg-red rounded-full flex items-center justify-center text-white transform -translate-y-2 translate-x-1 cursor-pointer;
+}
 
 .album {
   @apply relative bg-cover rounded-xl;
